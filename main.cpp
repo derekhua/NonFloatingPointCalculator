@@ -22,22 +22,12 @@ vector <string> modifiedAnswers;
 vector <string> modifiedAnswers2;
 vector <string> modifiedExpressions;
 
-bool debug = false;
-
-///Killian's to do list
-//fix buggy main
-//ensure abstraction for every subclass
-
-//Matt's to do list
-//assist creating operations classes
-//distributive property e.g.  2 ( 3 + 1 ) SEE PHONE PICTURES
-
-
-
 int main() {
     
     do {
-        //print menu
+        //********************
+        //**** print menu ****
+        //********************
         cout << "\t\t\t\tMENU" << endl;
         cout << "###################################################################" << endl;
         cout << "|A| Enter A NEW EXPRESSION:" << endl;
@@ -45,40 +35,40 @@ int main() {
         cout << "|C| Review Previous Expressions and Answers" << endl;
         cout << "|Q| Quit" << endl;
         cout << "###################################################################\n" << endl;
-        
-        //get selection
+        //======================================================================================================
+       
+        //********************
+        //** get selection ***
+        //********************
         cout << "Enter Your Selection:" << endl;
-        if (!debug) {
-            if (selection != 'Z' && selection != 'C') { //exclude very first run-through (because it has nothing to clear)
-                cin.sync();
-            }
+        if (selection != 'Z' && selection != 'C') { //exclude very first run-through (because it has nothing to clear)
+            cin.sync();
+        }
+        getline(cin, selection1);
+        while (selections.find(selection1) == string::npos) {
+            cout << "Please re-enter your selection:" << endl;
             getline(cin, selection1);
-            while (selections.find(selection1) == string::npos) {
-                cout << "Please re-enter your selection:" << endl;
-                getline(cin, selection1);
-            }
-        } else {
-            selection = 'A';
         }
         
-        //verify selection
+        //********************
+        //* verify selection *
+        //********************
         if (selection1.length() == 1) {
             selection = toupper(selection1[0]);
         } else { //error message
             cout << "Single character not found; selection length is actually: " << selection1.length() << endl;
-        }
+        }        
         
-        //handle selection
-        Algorithm* al = new Algorithm();
+        //********************
+        //* handle selection *
+        //********************
+        Algorithm *al = new Algorithm();
         switch (selection) {
             case 'A':
                 cout << "Enter the Expression (or type B to go back to Menu, Q to quit program):" << endl;
-                if (!debug) {
-                    getline(cin, expression);
-                } else {
-                    expression = "1 + 2"; //testcase
-                    cout << "Test Expression: " << expression << endl;
-                }
+                
+                getline(cin, expression);
+                
                 if (expression == "B" || expression == "b") { //go back to menu
                     cout << endl;
                     break;
@@ -86,9 +76,9 @@ int main() {
                 if (expression == "Q" || expression == "q") { //quit program
                     selection = 'Q';
                     cout << endl;
-                    cout << "*************************************" << endl;
-                    cout << "You Have Chosen to Quit the Program" << endl;
-                    cout << "*************************************\n" << endl;
+                    cout << "*****************************************" << endl;
+                    cout << "** You Have Chosen to Quit the Program **" << endl;
+                    cout << "*****************************************\n" << endl;
                 }
                 else{
                     try {
@@ -198,10 +188,8 @@ int main() {
                 break;
             default:
                 cout << "Unknown case: " << selection << endl;
-        }
-        if (debug) {
-            selection = 'Q'; //end after 1 run for debugging
-        }
+        }// end switch
+
     } while (selection != 'Q');
     
     ////al should deconstruct at about this point
