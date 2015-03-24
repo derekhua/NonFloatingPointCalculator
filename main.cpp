@@ -57,7 +57,7 @@ int main() {
             selection = toupper(selection1[0]);
         } else { //error message
             cout << "Single character not found; selection length is actually: " << selection1.length() << endl;
-        }        
+        }
         
         //********************
         //* handle selection *
